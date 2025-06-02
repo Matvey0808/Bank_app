@@ -1,3 +1,4 @@
+import 'package:bank_app/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -137,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const MyHomePage(),
+                        builder: (context) => const SigninScreen(),
                       ),
                     );
                   }

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
-class SignIn extends StatelessWidget {
-  const SignIn({super.key});
+class SigninScreen extends StatelessWidget {
+  const SigninScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 22, 24, 34),
+      backgroundColor: Color(0xFF161822),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Column(
