@@ -1,3 +1,4 @@
+import 'package:bank_app/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 
 class SignupScreen extends StatelessWidget {
@@ -13,7 +14,7 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 90),
               const Text(
                 "Sign Up",
                 style: TextStyle(
@@ -55,6 +56,34 @@ class SignupScreen extends StatelessWidget {
                     ),
                   ),
                 ),
+              ),
+              SizedBox(height: 25),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Already have an account.",
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.pop(
+                        context,
+                        MaterialPageRoute(builder: (context) => SigninScreen()),
+                      );
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 2),
+                      child: Text(
+                        "Sign in",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: Color.fromARGB(255, 14, 105, 224),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ],
           ),

@@ -1,124 +1,101 @@
+import 'package:bank_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
 
 class SigninScreen extends StatelessWidget {
   const SigninScreen({super.key});
 
+  static Widget _buildInputField(
+    String label,
+    IconData icon, {
+    bool isPassword = false,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(label, style: TextStyle(fontSize: 16, color: Colors.grey[500])),
+        const SizedBox(height: 8),
+        TextField(
+          obscureText: isPassword,
+          style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
+          decoration: InputDecoration(
+            prefixIcon: Padding(
+              padding: const EdgeInsets.only(right: 15),
+              child: Icon(icon, color: Colors.grey),
+            ),
+            enabledBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xFF32374E)),
+            ),
+            focusedBorder: const UnderlineInputBorder(
+              borderSide: BorderSide(color: Color(0xFF32374E)),
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xFF161822),
+      backgroundColor: const Color(0xFF161822),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 20,
+          ), // Добавил горизонтальный паддинг сюда
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 180, left: 20),
-                child: Text(
-                  "Sign In",
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w500,
+              const SizedBox(height: 180), // Отступ сверху для заголовка
+              const Text(
+                "Sign In",
+                style: TextStyle(
+                  fontSize: 35,
+                  color: Colors.white,
+                  fontWeight:
+                      FontWeight
+                          .bold, // Сделал bold для консистентности с Signup
+                ),
+              ),
+              const SizedBox(height: 40), // Отступ после заголовка
+              _buildInputField("Email Address", Icons.email_outlined),
+              const SizedBox(height: 20),
+              _buildInputField(
+                "Password",
+                Icons.lock_outline,
+                isPassword: true,
+              ),
+              const SizedBox(height: 45), // Отступ перед кнопкой
+              SizedBox(
+                width: double.infinity, // Кнопка на всю ширину
+                height: 60,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color.fromARGB(255, 14, 105, 224),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(14),
+                    ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 40, left: 20),
-                child: Text(
-                  "Email Address",
-                  style: TextStyle(fontSize: 16, color: Colors.grey[500]),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  width: 370,
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Icon(Icons.email_outlined),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 50, 55, 78),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 50, 55, 78),
-                        ),
-                      ),
+                  onPressed: () {
+                    // Логика входа
+                    print("Нажата кнопка Sign In");
+                  },
+                  child: const Text(
+                    "Sign In",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
                     ),
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20, left: 20),
-                child: Text(
-                  "Password",
-                  style: TextStyle(fontSize: 16, color: Colors.grey[500]),
-                ),
-              ),
-              Align(
-                alignment: Alignment.center,
-                child: SizedBox(
-                  width: 370,
-                  child: TextField(
-                    style: TextStyle(color: Colors.white),
-                    cursorColor: Colors.white,
-                    decoration: InputDecoration(
-                      prefixIcon: Padding(
-                        padding: const EdgeInsets.only(right: 15),
-                        child: Icon(Icons.lock_outline),
-                      ),
-                      enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 50, 55, 78),
-                        ),
-                      ),
-                      focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(
-                          color: Color.fromARGB(255, 50, 55, 78),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 45),
-              Center(
-                child: SizedBox(
-                  width: 370,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 7, 105, 235),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(14),
-                      ),
-                    ),
-                    onPressed: () {},
-                    child: Text(
-                      "Sign In",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 25),
+              const SizedBox(height: 25), // Отступ перед ссылкой
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
+                  const Text(
                     "I'm a new user.",
                     style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
@@ -126,9 +103,14 @@ class SigninScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 2),
                     child: GestureDetector(
                       onTap: () {
-                        print("Кликнул"); // Сделать навигацию
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignupScreen(),
+                          ),
+                        );
                       },
-                      child: Text(
+                      child: const Text(
                         "Sign Up",
                         style: TextStyle(
                           fontSize: 16,
