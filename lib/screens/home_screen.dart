@@ -1,24 +1,54 @@
 import 'package:bank_app/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    _initializeAndNavigate();
+  }
+
+  Future<void> _initializeAndNavigate() async {
+    await Future.delayed(const Duration(seconds: 3));
+
+    if (mounted) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeScreen()),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 22, 24, 34),
       body: SafeArea(
-        child: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 40),
-            child: SvgPicture.asset(
-              "assets/images/LogoBank.svg",
-              width: 140,
-              height: 140,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: SvgPicture.asset(
+                  "assets/images/LogoBank.svg",
+                  width: 140,
+                  height: 140,
+                ),
+              ),
             ),
-          ),
+            SizedBox(height: 10),
+            const SpinKitFadingCircle(color: Colors.white, size: 35),
+          ],
         ),
       ),
     );
