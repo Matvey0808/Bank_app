@@ -1,8 +1,29 @@
 import 'package:bank_app/screens/signin_screen.dart';
 import 'package:flutter/material.dart';
 
-class SignupScreen extends StatelessWidget {
+class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
+
+  @override
+  State<SignupScreen> createState() => _SignupScreenState();
+}
+
+class _SignupScreenState extends State<SignupScreen> {
+  final TextEditingController _fullNameController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  @override
+  void dispose() {
+    setState(() {
+      _fullNameController.dispose();
+      _phoneNumberController.dispose();
+      _emailController.dispose();
+      _passwordController.dispose();
+      super.dispose();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +35,7 @@ class SignupScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 90),
+              const SizedBox(height: 120),
               const Text(
                 "Sign Up",
                 style: TextStyle(
@@ -23,17 +44,33 @@ class SignupScreen extends StatelessWidget {
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              const SizedBox(height: 40),
-              _buildInputField("Full Name", Icons.person_outline),
-              const SizedBox(height: 20),
-              _buildInputField("Phone Number", Icons.phone_outlined),
-              const SizedBox(height: 20),
-              _buildInputField("Email Address", Icons.email_outlined),
-              const SizedBox(height: 20),
-              _buildInputField(
-                "Password",
-                Icons.lock_outline,
+              SizedBox(height: 20),
+              CustomInputField(
+                label: "Full Name",
+                icon: Icons.person,
+                isPassword: false,
+                controller: _fullNameController,
+              ),
+              SizedBox(height: 15),
+              CustomInputField(
+                label: "Phone Number",
+                icon: Icons.phone_outlined,
+                isPassword: false,
+                controller: _phoneNumberController,
+              ),
+              SizedBox(height: 15),
+              CustomInputField(
+                label: "Email Address",
+                icon: Icons.email_outlined,
+                isPassword: false,
+                controller: _emailController,
+              ),
+              SizedBox(height: 15),
+              CustomInputField(
+                label: "Password",
+                icon: Icons.lock_outline,
                 isPassword: true,
+                controller: _passwordController,
               ),
               const SizedBox(height: 40),
               SizedBox(
@@ -89,37 +126,6 @@ class SignupScreen extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Widget _buildInputField(
-    String label,
-    IconData icon, {
-    bool isPassword = false,
-  }) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(label, style: TextStyle(fontSize: 16, color: Colors.grey[500])),
-        const SizedBox(height: 8),
-        TextField(
-          obscureText: isPassword,
-          style: const TextStyle(color: Colors.white),
-          cursorColor: Colors.white,
-          decoration: InputDecoration(
-            prefixIcon: Padding(
-              padding: const EdgeInsets.only(right: 15),
-              child: Icon(icon, color: Colors.grey),
-            ),
-            enabledBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFF32374E)),
-            ),
-            focusedBorder: const UnderlineInputBorder(
-              borderSide: BorderSide(color: Color(0xFF32374E)),
-            ),
-          ),
-        ),
-      ],
     );
   }
 }
