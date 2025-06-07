@@ -1,5 +1,7 @@
-import 'package:bank_app/screens/profile_screen.dart';
+import 'package:bank_app/cards/cardBank.dart';
 import 'package:bank_app/screens/home_screen.dart';
+import 'package:bank_app/screens/profile_screen.dart';
+import 'package:bank_app/screens/onboarding_screen.dart';
 import 'package:bank_app/screens/signin_screen.dart';
 import 'package:bank_app/screens/signup_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(debugShowCheckedModeBanner: false, home: MyHomePage());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: HomeScreen());
   }
 }
